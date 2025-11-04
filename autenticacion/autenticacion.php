@@ -62,7 +62,7 @@ include BASE_PATH . '/includes/header.php';
                         <li class="list-group-item">
                             <a href="<?= BASE_URL ?>autenticacion/411login.php" 
                                class="text-decoration-none text-dark fw-semibold">
-                                411login.php
+                                411login.php (controlador - no tiene html)
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -74,7 +74,7 @@ include BASE_PATH . '/includes/header.php';
                         <li class="list-group-item">
                             <a href="<?= BASE_URL ?>autenticacion/413logout.php" 
                                class="text-decoration-none text-dark fw-semibold">
-                                413logout.php
+                                413logout.php (controlador - no tiene html)
                             </a>
                         </li>
                         <li class="list-group-item">
