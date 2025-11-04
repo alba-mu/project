@@ -1,73 +1,80 @@
 <?php
-//path where uploaded files should be copied.
-define("PATH_TO_UPLOADED_FILES", "./img/");
+// Configuración y cabecera
+$page_title = "405subidaImagen.php";       
+$current_page = "formularios";             
+require_once __DIR__ . '/../config.php';   
+include BASE_PATH . '/includes/header.php';
+
+// Ruta donde se guardarán las imágenes subidas
+define("PATH_TO_UPLOADED_FILES", BASE_PATH . "/img/");
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Resultado de subida</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+
+<main class="container">
     <h1>Resultado de subida</h1>
     <div class="contenedor-inline">
     <?php
-    /* Retrieve data from the query */
+    // Comprobamos si se ha enviado el formulario
     if (filter_has_var(INPUT_POST, 'submit_image')) {
-        // Retrieve width and height from form
-        if (filter_has_var(INPUT_POST, 'width') && filter_has_var(INPUT_POST, 'height')){
-            $width = filter_input(INPUT_POST, 'width', FILTER_VALIDATE_INT);
-            $height = filter_input(INPUT_POST, 'height', FILTER_VALIDATE_INT);
-        }
-        
-        //error container (string)
+
+        // Recuperamos los datos de anchura y altura
+        $width = filter_input(INPUT_POST, 'width', FILTER_VALIDATE_INT);
+        $height = filter_input(INPUT_POST, 'height', FILTER_VALIDATE_INT);
+
+        // Contenedor de errores
         $errors = "";
-        //validations.
+
+        // Validaciones
         if ($_FILES['filename']['error'] != 0) {
-            $errors = $errors . "<li>Error uploading file</li>";
+            $errors .= "<li>Error uploading file</li>";
         }
-        if ($width == false || $height == false) {
-            $errors = $errors . "<li>Error determining width and height of picture</li>";
+        if ($width === false || $height === false) {
+            $errors .= "<li>Error determining width and height of picture</li>";
         }
 
-        //show errors.
+        // Mostrar errores si existen
         if ($errors != "") {
             echo "<p>Errors:</p>";
-            echo "<ul>", $errors, "</ul>";
-            echo "<p>[<a href='./404subida.html'>Go back to the form</a>]</p>";
+            echo "<ul>$errors</ul>";
+            echo "<p>[<a href='" . BASE_URL . "/formularios/404subidaIndex.php'>Go back to the form</a>]</p>";
         } else {
-            if (is_uploaded_file($_FILES['filename']['tmp_name'])) {
-                // get file name
-                $fileName = $_FILES['filename']['name']; 
-                // set up destination of the file
-                if (is_dir(PATH_TO_UPLOADED_FILES)) {
-                    $destination = PATH_TO_UPLOADED_FILES . basename($fileName);
-                } else {
-                    mkdir(PATH_TO_UPLOADED_FILES);
-                    $destination = PATH_TO_UPLOADED_FILES . basename($fileName);
-                }
-                
-                
-                echo "<p>File $fileName uploaded successfully.</p>
-                        <p>destination: $destination </p>";
 
-                // Now you move/upload your file
-                if (move_uploaded_file($_FILES['filename']['tmp_name'], $destination)) {
-                    echo "<p>File $fileName successfully uploaded and moved</p>
-                    <div><img src='$destination' height='$height' width='$width'/>";
-                
+            // Procesar archivo subido
+            if (is_uploaded_file($_FILES['filename']['tmp_name'])) {
+                $fileName = $_FILES['filename']['name'];
+                $destination = PATH_TO_UPLOADED_FILES . basename($fileName);
+
+                // Crear directorio si no existe
+                if (!is_dir(PATH_TO_UPLOADED_FILES)) {
+                    mkdir(PATH_TO_UPLOADED_FILES, 0777, true);
                 }
+
+                echo "<p>File <strong>$fileName</strong> uploaded successfully.</p>";
+                echo "<p>Destination: <code>$destination</code></p>";
+
+                // Mover el archivo al directorio de destino
+                if (move_uploaded_file($_FILES['filename']['tmp_name'], $destination)) {
+                    echo "<p>File moved successfully.</p>";
+                    // Mostrar imagen redimensionada
+                    $imageUrl = BASE_URL . "/img/" . basename($fileName);
+                    echo "<div><img src='$imageUrl' height='$height' width='$width' alt='Uploaded image'></div>";
+                } else {
+                    echo "<p>Error moving file.</p>";
+                }
+
             } else {
-                echo "<p>File $fileName NOT uploaded.</p>";
+                echo "<p>File not uploaded.</p>";
             }
-            
-            echo "<p>[<a href='./404subida.html'>Upload another file</a>]</p>";
+
+            echo "<p>[<a href='" . BASE_URL . "/formularios/404subidaIndex.php'>Upload another file</a>]</p>";
         }
     } else {
-        echo "<p>Form has not been sent</p>";
+        echo "<p>Form has not been sent.</p>";
     }
     ?>
     </div>
-</body>
-</html>
+</main>
+
+<?php
+// Footer
+include BASE_PATH . '/includes/footer.php';
+?>

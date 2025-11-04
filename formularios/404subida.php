@@ -1,59 +1,76 @@
 <?php
-//path where uploaded files should be copied.
-define("PATH_TO_UPLOADED_FILES", "files/");
+// Configuración y cabecera
+$page_title = "406subida.php";       
+$current_page = "formularios";             
+require_once __DIR__ . '/../config.php';   
+include BASE_PATH . '/includes/header.php';
+
+// Directorio donde se guardarán los archivos subidos (ruta absoluta del servidor)
+define("PATH_TO_UPLOADED_FILES", BASE_PATH . '/formularios/files/');
+
+// URL pública de la carpeta de archivos subidos (para mostrar enlaces o imágenes)
+define("URL_TO_UPLOADED_FILES", BASE_URL . '/formularios/files/');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Resultado de subida</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+
+<main class="container">
     <h1>Resultado de subida</h1>
     <div class="contenedor-inline">
+
     <?php
     /* Retrieve data from the query */
     if (filter_has_var(INPUT_POST, 'submit_file')) {
-        //error container (string)
+        // Error container (string)
         $errors = "";
-        //validations.
+
+        // Validations
         if ($_FILES['filename']['error'] != 0) {
-            $errors = $errors . "<li>Error uploading file</li>";
+            $errors .= "<li>Error uploading file</li>";
         }
-        //show errors.
+
+        // Show errors
         if ($errors != "") {
             echo "<p>Errors:</p>";
-            echo "<ul>", $errors, "</ul>";
-            echo "<p>[<a href='./404subida.html'>Go back to the form</a>]</p>";
+            echo "<ul>$errors</ul>";
+            // Enlace dinámico de vuelta al formulario
+            echo "<p>[<a href='" . BASE_URL . "/formularios/404subidaIndex.php'>Volver al formulario</a>]</p>";
         } else {
             if (is_uploaded_file($_FILES['filename']['tmp_name'])) {
-                // get file name
+                // Get file name
                 $fileName = $_FILES['filename']['name']; 
-                //get mime type
+                // Get mime type
                 $mime_type = mime_content_type($_FILES['filename']['tmp_name']); 
-                // set up destination of the file
+                // Set up destination of the file
                 $destination = PATH_TO_UPLOADED_FILES . basename($fileName);
                 
-                echo "<p>File $fileName uploaded successfully.</p>";
-                echo "<p>MIME type: $mime_type </p>";
-                echo "<p>destination: $destination </p>";
+                echo "<p>Archivo <strong>$fileName</strong> subido correctamente.</p>";
+                echo "<p>Tipo MIME: $mime_type </p>";
+                echo "<p>Destino: $destination </p>";
 
-                // Now you move/upload your file
+                // Crear directorio de destino si no existe
+                if (!is_dir(PATH_TO_UPLOADED_FILES)) {
+                    mkdir(PATH_TO_UPLOADED_FILES);
+                }
+                // Move/upload the file
                 if (move_uploaded_file($_FILES['filename']['tmp_name'], $destination)) {
-                    echo "<p>File $fileName successfully uploaded and moved</p>";
-                
+                    echo "<p>El archivo <strong>$fileName</strong> se ha movido correctamente.</p>";
+                    // Mostrar enlace directo al archivo subido
+                    echo "<p><a href='" . URL_TO_UPLOADED_FILES . rawurlencode($fileName) . "' target='_blank'>Ver archivo</a></p>";
                 }
             } else {
-                echo "<p>File $fileName NOT uploaded.</p>";
+                echo "<p>No se ha podido subir el archivo.</p>";
             }
-            
-            echo "<p>[<a href='./404subida.html'>Upload another file</a>]</p>";
+
+            // Enlace de vuelta al formulario
+            echo "<p>[<a href='" . BASE_URL . "/formularios/404subidaIndex.php'>Subir otro archivo</a>]</p>";
         }
     } else {
-        echo "<p>Form has not been sent</p>";
+        echo "<p>El formulario no ha sido enviado.</p>";
     }
     ?>
     </div>
-</body>
-</html>
+</main>
+
+<?php
+// Footer
+include BASE_PATH . '/includes/footer.php';
+?>
