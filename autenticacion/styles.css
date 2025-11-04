@@ -1,0 +1,229 @@
+/* ====================================================================== */
+/*                              ESTILOS GENERALES                         */
+/* ====================================================================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+
+/* ====================================================================== */
+/*                          DISEÑO PÁGINA DE LOGIN                        */
+/* ====================================================================== */
+
+/* Centrar todo el contenido del login */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;              /* Centrado vertical completo */
+    background-color: #f4f4f4;      /* Igual que el resto del sitio */
+    margin: 0;
+}
+
+/* Contenedor principal del login */
+.login-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(99, 34, 34, 0.25);
+    padding: 40px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+}
+
+/* Título del login */
+.login-container h1 {
+    color: rgb(138, 15, 15);
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
+
+/* Ajustes visuales del formulario */
+.login-container fieldset {
+    border: none;
+    padding: 0;
+    background: none;
+    width: 100%;
+}
+
+.login-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 10px;
+}
+
+/* Botones de login y reset */
+.login-container input[type="submit"],
+.login-container input[type="reset"] {
+    background-color: rgb(138, 15, 15);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.login-container input[type="submit"]:hover,
+.login-container input[type="reset"]:hover {
+    background-color: rgba(138, 15, 15, 0.7);
+}
+
+/* Mensaje de error dentro del login */
+.login-container .error {
+    display: block;
+    margin-bottom: 15px;
+    color: rgb(255, 2, 2);
+    font-weight: bold;
+}
+
+/* ====================================================================== */
+/*            MENÚ LATERAL (412peliculas.php y 414series.php)             */
+/* ====================================================================== */
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+/* Menú a la izquierda */
+nav.menu {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(99, 34, 34, 0.25);
+    padding: 20px 10px;
+    width: 220px;
+    text-align: left;
+    flex-shrink: 0;
+}
+
+nav.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav.menu ul li {
+    margin-bottom: 10px;
+}
+
+nav.menu ul li a {
+    text-decoration: none;
+    color: rgb(138, 15, 15);
+    font-weight: bold;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+nav.menu ul li a:hover {
+    background-color: rgba(138, 15, 15, 0.1);
+}
+
+/* Usuario y cierre de sesión */
+nav.menu .usuario {
+    display: block;
+    margin-top: 20px;
+    font-size: 1em;
+    color: #555;
+    font-style: italic;
+}
+
+/* ====================================================================== */
+/*          CONTENIDO PRINCIPAL (412peliculas.php y 414series.php)        */
+/* ====================================================================== */
+main {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(99, 34, 34, 0.28);
+    padding: 30px;
+    flex-grow: 1;
+    text-align: left;
+    min-height: 400px;
+}
+
+main h1 {
+    text-align: center;
+    color: rgb(138, 15, 15);
+    margin-bottom: 20px;
+}
+
+/* ====================================================================== */
+/*                              MENSAJES DE ERROR                         */
+/* ====================================================================== */
+.error {
+    color: rgb(159, 7, 7);
+}
+
+/* ====================================================================== */
+/*                              CONTENEDOR DE ERRORES                     */
+/* ====================================================================== */
+.container-error {
+    background-color: #ffe5e5;            /* Fondo rosado suave */
+    border: 1px solid rgb(159, 7, 7);     /* Borde rojo oscuro */
+    color: rgb(138, 15, 15);              /* Texto granate coherente con el resto */
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(99, 34, 34, 0.15);
+
+    /* Centrar el contenedor en la página */
+    display: inline-block;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* Si quieres asegurarte de que queda en el centro del viewport: */
+.error-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+/* ====================================================================== */
+/*                              BOTON LOGIN                               */
+/* ====================================================================== */
+.boton {
+    display: inline-block;
+    background-color: rgb(138, 15, 15);
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.boton a {
+    color: white;
+    text-decoration: none;
+}
+
+.boton:hover {
+    background-color: rgba(138, 15, 15, 0.627);
+}
+
+
+

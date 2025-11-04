@@ -1,0 +1,122 @@
+/* ====================================================================== */
+/*                              ESTILOS GENERALES                         */
+/* ====================================================================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+/* ====================================================================== */
+/*                              EJERCICIO 406                             */
+/* ====================================================================== */
+
+.card { background:#fff; display:inline-block; padding:20px 30px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.08); }
+.card p { margin:10px 0; }
+.btn { padding:8px 14px; border-radius:6px; border:0; cursor:pointer; }
+
+.info { color:#333; font-weight:600; }
+.small { font-size:0.9em; color:#666; }
+
+
+/* ====================================================================== */
+/*                              FORMULARIOS                               */
+/* ====================================================================== */
+
+input[type="submit"],
+input[type="reset"] {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="button"]{
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 10px;
+}
+
+fieldset {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 0 auto 20px;
+
+    width: 600px;
+    max-width: 90%;
+    text-align: center;
+}
+
+fieldset legend {
+    color: rgb(138, 15, 15);
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+/* Alineación específica para el fieldset de aficiones */
+.alinear-izquierda {
+    text-align: left;
+    display: inline-block;
+}
+
+
+/* ====================================================================== */
+/*                            409formulario3.php                          */
+/* ====================================================================== */
+.boton {
+    display: inline-block;
+    background-color: rgb(138, 15, 15);
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+.boton:hover {
+    background-color: rgb(171, 13, 13);
+}
+
+/* Estilo general de la tabla */
+.tabla-datos {
+    width: 70%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+/* Bordes de celdas y cabeceras */
+.tabla-datos th, 
+.tabla-datos td {
+    border: 1px solid #999;
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+}
+
+/* Cabeceras con fondo suave */
+.tabla-datos th {
+    background-color: #dadada;
+    width: 20%;
+}
+
+/* Filas alternas */
+.tabla-datos tr:nth-child(even) {
+    background-color: #e6e6e6;
+}
+
+/* Estilo para mensajes de error */
+.error {
+    color: rgb(159, 7, 7);
+}

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 404 - Formularis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Exercici 404</h1>
+    <p class="enunciat">Crea un formulario que permita subir un archivo al servidor. 
+        Además del fichero, debe pedir en el mismo formulario dos campos numéricos que soliciten la anchura y la altura. 
+        Comprueba que tanto el fichero como los datos llegan correctamente.</p>
+
+    <div class="contenedor-inline">
+       
+        <form name="form_data" action="./404subida.php" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Data (any type)</legend>
+                <input type="file" name="filename" />
+            </fieldset>
+            <p><input type="submit" value="upload" name="submit_file">
+                <input type="reset" value="reset" name="reset_file">
+            </p>
+        </form>
+
+        <form name="form_image" action="./405subidaImagen.php" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Image</legend>
+                <input type="file" name="filename" accept="image/png, image/jpeg"/>
+            </fieldset>
+            <fieldset>
+                <legend>Width and Height</legend>
+                <input type="number" name="width" min="0" max="900" value="450"/>
+                <input type="number" name="height" min="0" max="650" value="325"/>
+            </fieldset>
+            <p><input type="submit" value="upload" name="submit_image">
+                <input type="reset" value="reset" name="reset_image">
+            </p>
+        </form>
+    </div>
+</body>
+
+</html>
