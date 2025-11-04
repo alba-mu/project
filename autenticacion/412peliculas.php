@@ -40,7 +40,7 @@ if (!isset($_SESSION['usuario'])) {
         <!-- Mensaje de error -->
         <section class="text-center p-5 rounded-4 bg-light shadow-soft">
             <h1 class="fw-bold text-danger mb-3">Acceso denegado</h1>
-            <p class="lead mb-4">
+            <p class="lead mb-4 alert alert-danger">
                 No estás identificado. Debes iniciar sesión para acceder al contenido de esta página.
             </p>
             <a href="410index.php" class="btn btn-mediumslateblue px-4">Iniciar sesión</a>
