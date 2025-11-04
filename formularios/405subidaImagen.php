@@ -22,6 +22,8 @@ define("PATH_TO_UPLOADED_FILES", BASE_PATH . "/img/");
                 $width = filter_input(INPUT_POST, 'width', FILTER_VALIDATE_INT);
                 $height = filter_input(INPUT_POST, 'height', FILTER_VALIDATE_INT);
 
+                $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
+
                 // Contenedor de errores
                 $errors = "";
 
@@ -33,12 +35,16 @@ define("PATH_TO_UPLOADED_FILES", BASE_PATH . "/img/");
                     $errors .= "<li>Anchura o altura no válidas.</li>";
                 }
 
+                if (!in_array($mime_type = mime_content_type($_FILES['filename']['tmp_name']), $allowedTypes)) {
+                    $errors .= "<li>El tipo del archivo subido no está permitido.</li>";
+                }
+
                 // Mostrar errores si existen
                 if ($errors != "") {
                     echo '<div class="alert alert-danger" role="alert">';
                     echo "<h5 class='fw-semibold'>Se han encontrado errores:</h5><ul>$errors</ul>";
                     echo '</div>';
-                    echo '<p class="mt-3"><a href="' . BASE_URL . '/formularios/404subidaIndex.php" class="btn btn-outline-mediumslateblue">Volver al formulario</a></p>';
+                    echo '<p class="mt-3"><a href="' . BASE_URL . '/formularios/404subidaIndex.php" class="btn btn-mediumslateblue text-white">Volver al formulario</a></p>';
                 } else {
 
                     // Procesar archivo subido
