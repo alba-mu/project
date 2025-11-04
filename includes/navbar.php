@@ -10,7 +10,7 @@ if (!defined('BASE_PATH')) {
 
         <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center" href="<?= BASE_URL ?>index.php">
-            <img src="<?= BASE_URL ?>img/logo_provenzana.jpg" alt="Logo Provenzana" width="60" class="me-2 rounded">
+            <img src="<?= BASE_URL ?>logo_provenzana.jpg" alt="Logo Provenzana" width="60" class="me-2 rounded">
             <span class="fw-bold">Ejercicios PHP</span>
         </a>
 
